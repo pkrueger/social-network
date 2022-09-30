@@ -1,51 +1,45 @@
 <template>
-  <span class="navbar-text">
+  <transition name="slide-fade">
     <button
-      class="btn selectable text-dark text-uppercase my-2 my-lg-0"
+      class="btn selectable text-secondary text-uppercase"
       @click="login"
       v-if="!user.isAuthenticated"
     >
       Login
     </button>
+  </transition>
 
-    <div class="dropdown my-2 my-lg-0" v-else>
-      <div
-        class="dropdown-toggle selectable"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-        id="authDropdown"
-      >
-        <div v-if="account.picture || user.picture">
-          <img
-            :src="account.picture || user.picture"
-            alt="account photo"
-            height="40"
-            class="rounded"
-          />
-          <span class="mx-3 text-success lighten-30">{{
-            account.name || user.name
-          }}</span>
+  <div class="dropdown my-2 my-lg-0" v-if="user.isAuthenticated">
+    <div
+      class="dropdown-toggle selectable"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+      id="authDropdown"
+    >
+      <transition name="slide-fade">
+        <div v-if="account.id">
+          <span class="mx-3 text-primary">{{ account.name || user.name }}</span>
         </div>
-      </div>
-      <div
-        class="dropdown-menu p-0 list-group w-100"
-        aria-labelledby="authDropdown"
-      >
-        <router-link :to="{ name: 'Account' }">
-          <div class="list-group-item list-group-item-action hoverable">
-            Manage Account
-          </div>
-        </router-link>
-        <div
-          class="list-group-item list-group-item-action hoverable text-danger"
-          @click="logout"
-        >
-          <i class="mdi mdi-logout"></i>
-          logout
+      </transition>
+    </div>
+    <div
+      class="dropdown-menu p-0 list-group w-100"
+      aria-labelledby="authDropdown"
+    >
+      <router-link :to="{ name: 'Account' }">
+        <div class="list-group-item list-group-item-action hoverable">
+          Manage Account
         </div>
+      </router-link>
+      <div
+        class="list-group-item list-group-item-action hoverable text-danger"
+        @click="logout"
+      >
+        <i class="mdi mdi-logout"></i>
+        logout
       </div>
     </div>
-  </span>
+  </div>
 </template>
 
 <script>
@@ -82,5 +76,32 @@ export default {
 
 .hoverable {
   cursor: pointer;
+}
+
+.btn {
+  font-size: 2rem;
+  border-radius: 1rem;
+  margin: 0rem 6rem;
+  padding: 0.5rem 0rem;
+  transition: filter 100ms ease;
+}
+
+.btn:hover {
+  filter: brightness(110%);
+}
+
+.btn:active {
+  filter: brightness(90%);
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>
