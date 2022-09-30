@@ -1,12 +1,10 @@
 <template>
-  <div class="px-5 text-dark" v-if="state.account.id">
-    <img
-      src="../assets/img/undraw_pic_profile_re_1tdc.svg"
-      alt=""
-      class="img-fluid profile-image"
-    />
-    <p class="mb-0">Fall 2022</p>
-    <h3 class="name">Patrick Krueger</h3>
+  <div class="px-5 text-dark text-center" v-if="state.account.id">
+    <img :src="state.account.picture" alt="" class="img-fluid profile-image" />
+    <div class="text-start">
+      <p class="mb-0">Fall 2022</p>
+      <h3 class="name">Patrick Krueger</h3>
+    </div>
     <div class="social-link">
       <i class="fa-brands fa-github"></i> <span>pkrueger</span>
     </div>
@@ -44,6 +42,8 @@ export default {
 .profile-image {
   margin: 7rem 0 3rem 0;
   border-radius: 50%;
+  min-height: 9rem;
+  min-width: 9rem;
 }
 
 .name {

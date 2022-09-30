@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <i class="fa-solid fa-pen-fancy"></i>
@@ -40,6 +40,15 @@ export default {
 </script>
 
 <style scoped>
+.navbar {
+  background: rgb(128, 203, 195);
+  background: linear-gradient(
+    59deg,
+    rgba(128, 203, 195, 1) 0%,
+    rgba(141, 221, 212, 1) 100%
+  );
+}
+
 a:hover {
   text-decoration: none;
 }
