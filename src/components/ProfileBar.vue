@@ -1,7 +1,7 @@
 <template>
   <div
     class="login"
-    :style="state.account.id ? 'height: auto;' : 'height: 100%'"
+    :style="state.account.id ? 'margin-top: 1rem;' : 'height: 100%'"
   >
     <Login />
     <transition name="slide-fade">
@@ -85,7 +85,6 @@ export default {
   gap: 0.25rem;
   text-align: center;
   transition: height 200ms ease;
-  margin-top: 1rem;
 }
 
 .transparent {
