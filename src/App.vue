@@ -1,17 +1,24 @@
 <template>
   <div class="body">
-    <section class="profile-bar bg-white elevation-1">
+    <section
+      class="profile-bar bg-white elevation-1"
+      v-if="appState.screenWidth > 991"
+    >
       <!-- TODO Create Profile Sidebar and put here -->
       <ProfileBar />
     </section>
     <main>
       <Navbar class="elevation-2" />
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-xl-9">
+          <!-- w > 991 -->
+          <div class="col-12 awords" v-if="appState.screenWidth < 992">
+            <AwordBar />
+          </div>
+          <div class="col-lg-10">
             <router-view />
           </div>
-          <div class="col-xl-3">
+          <div class="col-lg-2 awords" v-if="appState.screenWidth > 991">
             <AwordBar />
           </div>
         </div>
@@ -29,6 +36,10 @@ import AwordBar from "./components/default/AwordBar.vue";
 
 export default {
   setup() {
+    window.addEventListener("resize", () => {
+      AppState.screenWidth = window.innerWidth;
+    });
+
     return {
       appState: computed(() => AppState),
     };

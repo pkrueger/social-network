@@ -7,4 +7,5 @@ export const AppState = reactive({
   account: {},
   /** @type {import('./models/Aword.js').Aword[]} */
   awords: [],
+  screenWidth: window.innerWidth,
 });

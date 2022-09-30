@@ -1,5 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark px-3">
+    <nav-profile-pic />
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <i class="fa-solid fa-pen-fancy"></i>
@@ -29,13 +30,23 @@
       </ul>
     </div>
   </nav>
+  <!-- TODO Put in a search bar -->
 </template>
 
 <script>
+import { computed } from "@vue/reactivity";
+import { reactive } from "vue";
+import { AppState } from "../../AppState.js";
+import NavProfilePic from "./NavProfilePic.vue";
+
 export default {
   setup() {
-    return {};
+    const state = reactive({
+      width: computed(() => AppState.screenWidth),
+    });
+    return { state };
   },
+  components: { NavProfilePic },
 };
 </script>
 
