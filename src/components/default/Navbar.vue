@@ -1,9 +1,9 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
     <nav-profile-pic />
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <i class="fa-solid fa-pen-fancy"></i>
+        <i class="fa-solid fa-pen-fancy text-light"></i>
       </div>
     </router-link>
     <button
@@ -22,7 +22,7 @@
         <li>
           <router-link
             :to="{ name: 'About' }"
-            class="btn text-success lighten-30 selectable text-uppercase"
+            class="btn text-light lighten-30 selectable text-uppercase"
           >
             About
           </router-link>
@@ -51,15 +51,6 @@ export default {
 </script>
 
 <style scoped>
-.navbar {
-  background: rgb(128, 203, 195);
-  background: linear-gradient(
-    59deg,
-    rgba(128, 203, 195, 1) 0%,
-    rgba(141, 221, 212, 1) 100%
-  );
-}
-
 a:hover {
   text-decoration: none;
 }

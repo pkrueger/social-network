@@ -5,31 +5,31 @@
   >
     <Login />
     <transition name="slide-fade">
-      <p class="transparent" v-if="!state.user.isAuthenticated">
+      <p class="transparent text-dark" v-if="!state.user.isAuthenticated">
         to post and interact with other posts
       </p>
     </transition>
   </div>
 
   <transition name="slide-fade">
-    <div class="px-5 text-dark text-center" v-if="state.account.id">
+    <div class="px-5 text-primary text-center" v-if="state.account.id">
       <img
         :src="state.account.picture"
         alt=""
         class="img-fluid profile-image"
       />
-      <div class="text-start">
+      <div class="text-start text-primary">
         <p class="mb-0 transparent" v-if="state.account.class">Fall 2022</p>
         <h3 class="name text-overflow">{{ state.account.name }}</h3>
       </div>
-      <div class="social-link" v-if="state.account.github">
+      <div class="social-link text-primary" v-if="state.account.github">
         <i class="fa-brands fa-github"></i> <span>pkrueger</span>
       </div>
-      <div class="social-link" v-if="state.account.linkedin">
+      <div class="social-link text-primary" v-if="state.account.linkedin">
         <i class="fa-brands fa-linkedin"></i>
         <span>in/patrick-krueger</span>
       </div>
-      <div class="social-link" v-if="state.account.resume">
+      <div class="social-link text-primary" v-if="state.account.resume">
         <i class="fa-solid fa-file"></i> <span>Resume</span>
       </div>
     </div>
