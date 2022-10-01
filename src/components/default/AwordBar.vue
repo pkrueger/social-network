@@ -17,11 +17,6 @@
       class="img-fluid aword elevation-3"
       alt="it don't work"
     />
-    <img
-      :src="state.awords[1]?.banner"
-      class="img-fluid aword elevation-3"
-      alt="it don't work"
-    />
   </div>
 </template>
 

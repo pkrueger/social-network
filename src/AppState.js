@@ -14,6 +14,7 @@ export const AppState = reactive({
   posts: [],
 
   olderPosts: "",
+  page: 1,
 
   screenWidth: window.innerWidth,
 });
