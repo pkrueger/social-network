@@ -13,7 +13,6 @@ export const AppState = reactive({
   /** @type {import('./models/Post.js').Post[]} */
   posts: [],
 
-  newerPosts: "",
   olderPosts: "",
 
   screenWidth: window.innerWidth,
