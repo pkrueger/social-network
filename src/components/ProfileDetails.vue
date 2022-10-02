@@ -102,7 +102,7 @@ export default {
   height: 8rem;
   object-fit: cover;
   transform: translateY(10rem);
-  outline: 0.1rem solid #439a86;
+  outline: 0.1rem solid #f8f4e3;
 }
 
 .card-header {

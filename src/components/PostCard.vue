@@ -34,11 +34,15 @@
     </div>
     <div class="card-footer text-end text-primary bg-white border-0 fs-5">
       <i
-        class="fa-solid fa-heart"
+        class="fa-solid fa-heart me-1"
+        @click="handleLike(post.id)"
         v-if="post.likeIds.includes(state.account.id)"
       ></i
-      ><i class="fa-regular fa-heart me-1" v-else-if="state.account.id"></i
-      ><i class="fa-regular fa-heart me-1" v-else></i>
+      ><i
+        class="fa-regular fa-heart me-1"
+        @click="handleLike(post.id)"
+        v-else
+      ></i>
       <span class="transparent">{{ post.likeIds.length }}</span>
     </div>
   </div>
@@ -50,6 +54,8 @@ import { format, render, cancel, register } from "timeago.js";
 import { onMounted, onUnmounted, reactive } from "vue";
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
+import Pop from "../utils/Pop.js";
+import { accountService } from "../services/AccountService.js";
 
 export default {
   props: {
@@ -59,6 +65,18 @@ export default {
     const state = reactive({
       account: computed(() => AppState.account),
     });
+
+    async function handleLike(id) {
+      try {
+        if (state.account.id) {
+          await accountService.handleLike(id);
+        } else {
+          Pop.toast("You need to be logged in to like posts.");
+        }
+      } catch (error) {
+        Pop.error(error, ["HandleLike"]);
+      }
+    }
 
     onMounted(() => {
       const nodes = document.querySelectorAll(".needs-render");
@@ -75,6 +93,7 @@ export default {
     });
     return {
       state,
+      handleLike,
       loadDefaultImage(event) {
         event.target.src = "src/assets/img/undraw-dog.png";
       },

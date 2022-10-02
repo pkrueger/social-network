@@ -1,35 +1,41 @@
-import { dev } from '../env'
+import { dev } from "../env";
 
 function log(type, content) {
   if (dev) {
     // eslint-disable-next-line no-console
-    console[type](`[${type}] :: ${new Date().toLocaleTimeString()} :: `, ...content)
+    console[type](
+      `[${type}] :: ${new Date().toLocaleTimeString()} :: `,
+      ...content
+    );
   } else {
     switch (type) {
-      case 'log':
-      case 'assert':
-        return
+      case "log":
+      case "assert":
+        return;
     }
-    // TODO SEND LOGS TO EXTERNAL SERVICE
+    // SEND LOGS TO EXTERNAL SERVICE
     // eslint-disable-next-line no-console
-    console[type](`[${type}] :: ${new Date().toLocaleTimeString()} :: `, ...content)
+    console[type](
+      `[${type}] :: ${new Date().toLocaleTimeString()} :: `,
+      ...content
+    );
   }
 }
 
 export const logger = {
   log() {
-    log('log', arguments)
+    log("log", arguments);
   },
   error() {
-    log('error', arguments)
+    log("error", arguments);
   },
   warn() {
-    log('warn', arguments)
+    log("warn", arguments);
   },
   assert() {
-    log('assert', arguments)
+    log("assert", arguments);
   },
   trace() {
-    log('trace', arguments)
-  }
-}
+    log("trace", arguments);
+  },
+};

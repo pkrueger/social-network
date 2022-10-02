@@ -38,7 +38,7 @@ export default {
       try {
         await postsService.getPostsById(route.params.id);
       } catch (error) {
-        Pop.error(error, "GetPostsById");
+        Pop.error(error, "[GetPostsById]");
       }
     }
 
@@ -54,7 +54,7 @@ export default {
             await postsService.getOlderActivePosts(state.older);
           }
         } catch (error) {
-          Pop.error(error, "GetNextPosts");
+          Pop.error(error, "[GetNextPosts]");
         }
       };
     }
