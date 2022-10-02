@@ -88,7 +88,7 @@ export default {
 }
 
 .transparent {
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .slide-fade-enter-active,

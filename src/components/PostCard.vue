@@ -1,27 +1,29 @@
 <template>
   <div class="card">
     <div class="card-body p-0">
-      <div class="user-info d-flex">
-        <img
-          :src="post.creator.picture"
-          :alt="post.creator.name"
-          class="img-fluid post-profile-image"
-          @error="loadDefaultImage"
-        />
-        <div class="user-text ms-3">
-          <h5 class="card-title text-primary">{{ post.creator.name }}</h5>
-          <div class="d-flex align-items-center">
-            <h6
-              class="card-subtitle text-dark needs-render transparent"
-              :datetime="post.created"
-            ></h6>
-            <i
-              class="fa-solid fa-user-graduate text-dark transparent ms-3"
-              v-if="post.creator.graduated"
-            ></i>
+      <router-link :to="{ name: 'Profile', params: { id: post.creator.id } }">
+        <div class="user-info d-flex">
+          <img
+            :src="post.creator.picture"
+            :alt="post.creator.name"
+            class="img-fluid post-profile-image"
+            @error="loadDefaultImage"
+          />
+          <div class="user-text ms-3">
+            <h5 class="card-title text-primary">{{ post.creator.name }}</h5>
+            <div class="d-flex align-items-center">
+              <h6
+                class="card-subtitle text-dark needs-render transparent"
+                :datetime="post.created"
+              ></h6>
+              <i
+                class="fa-solid fa-user-graduate text-dark transparent ms-3"
+                v-if="post.creator.graduated"
+              ></i>
+            </div>
           </div>
         </div>
-      </div>
+      </router-link>
       <p class="post-body">{{ post.body }}</p>
       <img
         :src="post.imgUrl"

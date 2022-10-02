@@ -1,5 +1,11 @@
 <template>
   <div class="infinite-scroll pe-1 d-flex flex-column align-items-center">
+    <ProfileDetails
+      :creator="state.creator"
+      class="post shadow w-100"
+      v-if="state.creator"
+    />
+
     <PostCard
       v-for="p in state.posts"
       :key="p.id"
@@ -11,24 +17,28 @@
 
 <script>
 import { computed } from "@vue/reactivity";
-import { onMounted, reactive } from "vue";
+import { onMounted, onUnmounted, reactive } from "vue";
+import { useRoute } from "vue-router";
 import { AppState } from "../AppState.js";
 import PostCard from "../components/PostCard.vue";
 import { postsService } from "../services/PostsService.js";
 import Pop from "../utils/Pop.js";
+import ProfileDetails from "../components/ProfileDetails.vue";
 
 export default {
   setup() {
+    const route = useRoute();
     const state = reactive({
-      posts: computed(() => AppState.posts),
+      posts: computed(() => AppState.activePosts),
       older: computed(() => AppState.olderPosts),
+      creator: computed(() => AppState.activeCreator),
     });
 
-    async function getAllPosts() {
+    async function getPostsById() {
       try {
-        await postsService.getPosts();
+        await postsService.getPostsById(route.params.id);
       } catch (error) {
-        Pop.error(error, "[GetAllPosts]");
+        Pop.error(error, "GetPostsById");
       }
     }
 
@@ -41,7 +51,7 @@ export default {
             state.older
           ) {
             console.log("hello");
-            await postsService.getOlderPosts(state.older);
+            await postsService.getOlderPostsById(state.older);
           }
         } catch (error) {
           Pop.error(error, "GetNextPosts");
@@ -49,18 +59,32 @@ export default {
       };
     }
 
+    async function getCreator() {
+      try {
+        await postsService.getCreator(route.params.id);
+      } catch (error) {
+        Pop.error(error, "[GetCreator]");
+      }
+    }
+
     onMounted(() => {
-      getAllPosts();
+      getPostsById();
       getNextPosts();
+      getCreator();
     });
 
-    return { state };
+    onUnmounted(() => {
+      AppState.activePosts = [];
+      AppState.activeCreator = null;
+    });
+
+    return { state, route, getCreator };
   },
-  components: { PostCard },
+  components: { PostCard, ProfileDetails },
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .infinite-scroll {
   margin-top: 1rem;
   overflow: auto;
