@@ -4,7 +4,6 @@
       class="profile-bar bg-white elevation-1"
       v-if="appState.screenWidth > 991"
     >
-      <!-- TODO Create Profile Sidebar and put here -->
       <ProfileBar />
     </section>
     <main>

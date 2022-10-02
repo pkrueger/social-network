@@ -25,7 +25,6 @@
       </ul>
     </div>
   </nav>
-  <!-- TODO Put in a search bar -->
 </template>
 
 <script>
