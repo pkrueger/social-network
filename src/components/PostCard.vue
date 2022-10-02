@@ -37,6 +37,7 @@
         class="fa-solid fa-heart"
         v-if="post.likeIds.includes(state.account.id)"
       ></i
+      ><i class="fa-regular fa-heart me-1" v-else-if="state.account.id"></i
       ><i class="fa-regular fa-heart me-1" v-else></i>
       <span class="transparent">{{ post.likeIds.length }}</span>
     </div>
@@ -110,5 +111,18 @@ export default {
 
 .card-footer {
   padding: 0 1rem 0.5rem;
+}
+
+.fa-heart {
+  transition: filter 100ms linear;
+}
+
+.fa-heart:hover {
+  cursor: pointer;
+  filter: brightness(200%);
+}
+
+.fa-heart:active {
+  filter: brightness(90%);
 }
 </style>

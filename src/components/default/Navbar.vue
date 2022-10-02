@@ -18,14 +18,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav ms-auto">
         <li>
-          <router-link
-            :to="{ name: 'About' }"
-            class="btn text-light lighten-30 selectable text-uppercase"
-          >
-            About
-          </router-link>
+          <search-form class="pt-3 pb-lg-3" />
         </li>
       </ul>
     </div>
@@ -38,6 +33,7 @@ import { computed } from "@vue/reactivity";
 import { reactive } from "vue";
 import { AppState } from "../../AppState.js";
 import NavProfilePic from "./NavProfilePic.vue";
+import SearchForm from "../SearchForm.vue";
 
 export default {
   setup() {
@@ -46,7 +42,7 @@ export default {
     });
     return { state };
   },
-  components: { NavProfilePic },
+  components: { NavProfilePic, SearchForm },
 };
 </script>
 
@@ -65,7 +61,9 @@ a:hover {
   border-bottom-right-radius: 0;
 }
 
-.navbar {
-  height: 3.5rem;
+@media (width > 991px) {
+  .navbar {
+    height: 3.5rem;
+  }
 }
 </style>

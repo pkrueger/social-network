@@ -36,6 +36,18 @@ class PostsService {
     const res = await api.get(`/api/profiles/${id}`);
     AppState.activeCreator = new Account(res.data);
   }
+
+  async getSearchResults(query) {
+    const res = await api.get("/api/profiles", {
+      params: { query },
+    });
+
+    const r = await api.get("/api/posts", {
+      params: { query },
+    });
+    // TODO Do stuff with this data
+    console.log(res.data, r.data);
+  }
 }
 
 export const postsService = new PostsService();
