@@ -27,8 +27,9 @@
       <p class="post-body">{{ post.body }}</p>
       <img
         :src="post.imgUrl"
-        alt="Error Loading"
+        alt="Error Loading Picture"
         class="img-fluid post-image"
+        @error="loadDefaultImage"
         v-if="post.imgUrl"
       />
     </div>
