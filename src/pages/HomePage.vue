@@ -11,7 +11,7 @@
 
 <script>
 import { computed } from "@vue/reactivity";
-import { onMounted, reactive } from "vue";
+import { onMounted, onUnmounted, reactive } from "vue";
 import { AppState } from "../AppState.js";
 import PostCard from "../components/PostCard.vue";
 import { postsService } from "../services/PostsService.js";
@@ -52,6 +52,11 @@ export default {
     onMounted(() => {
       getAllPosts();
       getNextPosts();
+    });
+
+    onUnmounted(() => {
+      AppState.olderPosts = "";
+      AppState.posts = [];
     });
 
     return { state };

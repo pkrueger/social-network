@@ -51,7 +51,7 @@ export default {
             state.older
           ) {
             console.log("hello");
-            await postsService.getOlderPostsById(state.older);
+            await postsService.getOlderActivePosts(state.older);
           }
         } catch (error) {
           Pop.error(error, "GetNextPosts");
@@ -76,6 +76,7 @@ export default {
     onUnmounted(() => {
       AppState.activePosts = [];
       AppState.activeCreator = null;
+      AppState.olderPosts = "";
     });
 
     return { state, route, getCreator };

@@ -19,6 +19,9 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account | null} */
   activeCreator: null,
 
+  /** @type {import('./models/Post.js').Post} */
+  profiles: [],
+
   olderPosts: "",
   page: 1,
 

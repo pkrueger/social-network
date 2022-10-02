@@ -54,11 +54,11 @@ export default {
   width: 20rem;
 }
 
-@media (width > 1600px) {
-  .profile-bar {
-    width: 25rem;
-  }
-}
+// @media (width > 1600px) {
+//   .profile-bar {
+//     width: 25rem;
+//   }
+// }
 
 .body {
   display: flex;

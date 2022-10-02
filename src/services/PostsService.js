@@ -24,7 +24,7 @@ class PostsService {
     AppState.olderPosts = res.data.older;
   }
 
-  async getOlderPostsById(url) {
+  async getOlderActivePosts(url) {
     const res = await api.get(url);
     for (let post of res.data.posts) {
       AppState.activePosts.push(new Post(post));
@@ -45,8 +45,11 @@ class PostsService {
     const r = await api.get("/api/posts", {
       params: { query },
     });
-    // TODO Do stuff with this data
-    console.log(res.data, r.data);
+
+    // console.log(res.data, r.data);
+    AppState.profiles = res.data.map((a) => new Account(a));
+    AppState.activePosts = r.data.posts.map((p) => new Post(p));
+    AppState.olderPosts = r.data.older;
   }
 }
 
