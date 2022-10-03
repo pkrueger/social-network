@@ -30,6 +30,11 @@ class AccountService {
       );
     }
   }
+
+  async updateProfile(data) {
+    const res = await api.put("/account", data);
+    this.getAccount();
+  }
 }
 
 export const accountService = new AccountService();

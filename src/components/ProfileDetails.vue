@@ -61,12 +61,19 @@
     </div>
 
     <div
-      class="card-footer border-0 bg-primary text-light text-end pb-3"
+      class="card-footer rounded-bottom border-0 bg-primary text-light text-end pb-3"
       v-if="creator.id == state.account?.id"
     >
       <!-- TODO Create Edit Functionality for Profile -->
-      <button class="btn btn-outline text-light">EDIT</button>
+      <button
+        class="btn btn-outline text-light"
+        data-bs-toggle="modal"
+        data-bs-target="#profileEditModal"
+      >
+        EDIT
+      </button>
     </div>
+    <ProfileModal />
   </div>
 </template>
 
@@ -75,6 +82,7 @@ import { computed } from "@vue/reactivity";
 import { reactive } from "vue";
 import { AppState } from "../AppState.js";
 import { Account } from "../models/Account.js";
+import ProfileModal from "./ProfileModal.vue";
 
 export default {
   props: {
@@ -84,7 +92,6 @@ export default {
     const state = reactive({
       account: computed(() => AppState.account),
     });
-
     return {
       state,
       loadDefaultImage(event) {
@@ -92,6 +99,7 @@ export default {
       },
     };
   },
+  components: { ProfileModal },
 };
 </script>
 

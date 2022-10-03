@@ -26,6 +26,16 @@ import Pop from "../utils/Pop.js";
 import ProfileDetails from "../components/ProfileDetails.vue";
 
 export default {
+  watch: {
+    $route(to, from) {
+      if (to != from) {
+        this.getPostsById();
+        this.getNextPosts();
+        this.getCreator();
+      }
+    },
+  },
+
   setup() {
     const route = useRoute();
     const state = reactive({
@@ -79,7 +89,7 @@ export default {
       AppState.olderPosts = "";
     });
 
-    return { state, route, getCreator };
+    return { state, route, getCreator, getPostsById, getNextPosts };
   },
   components: { PostCard, ProfileDetails },
 };
