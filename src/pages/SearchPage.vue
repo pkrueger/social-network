@@ -10,7 +10,7 @@
       <h1 class="text-primary mb-4 ms-4">People</h1>
       <div class="container-fluid">
         <div class="row post">
-          <div class="col-sm-6" v-for="profile in state.profiles">
+          <div class="col-sm-6 post w-100" v-for="profile in state.profiles">
             <ProfileSearchCard
               :key="profile.id"
               :creator="profile"
