@@ -44,7 +44,6 @@ export default {
       const element = document.querySelector(".infinite-scroll");
       element.onscroll = async (event) => {
         try {
-          // TODO MAKE WORK IN MOBILE
           if (
             element.scrollTop + element.clientHeight >= element.scrollHeight &&
             state.older
