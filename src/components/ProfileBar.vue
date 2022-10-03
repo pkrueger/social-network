@@ -58,8 +58,9 @@ export default {
 .profile-image {
   margin: 7rem 0 3rem 0;
   border-radius: 50%;
-  min-height: 9rem;
-  min-width: 9rem;
+  height: 12rem;
+  width: 12rem;
+  object-fit: cover;
 }
 
 .name {
