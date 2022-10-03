@@ -130,13 +130,16 @@
 
 <script>
 import { ref, watchEffect } from "vue";
+import { useRoute } from "vue-router";
 import { AppState } from "../AppState.js";
 import { accountService } from "../services/AccountService.js";
+import { postsService } from "../services/PostsService.js";
 import Pop from "../utils/Pop.js";
 
 export default {
   setup() {
     const editable = ref({});
+    const route = useRoute();
 
     watchEffect(() => {
       editable.value = { ...AppState.account };
@@ -145,6 +148,7 @@ export default {
     async function handleSubmit() {
       try {
         await accountService.updateProfile(editable.value);
+        await postsService.getCreator(route.params.id);
       } catch (error) {
         Pop.error(error, "[handleSubmit]");
       }

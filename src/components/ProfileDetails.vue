@@ -109,12 +109,12 @@ export default {
   width: 8rem;
   height: 8rem;
   object-fit: cover;
-  transform: translateY(10rem);
+  transform: translateY(20rem);
   outline: 0.1rem solid #f8f4e3;
 }
 
 .card-header {
-  height: 15rem;
+  height: 25rem;
   background-position: center;
   background-size: cover;
 }
