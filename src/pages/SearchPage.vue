@@ -24,7 +24,19 @@
       <h1 class="text-primary mb-4 ms-4">People</h1>
       <div class="container-fluid">
         <div class="row post">
-          <div class="col-sm-6" v-for="profile in state.profiles">
+          <div
+            class="col-sm-6"
+            v-if="editable.filter"
+            v-for="profile in state.profiles"
+          >
+            <ProfileSearchCard
+              v-if="profile.graduated"
+              :key="profile.id"
+              :creator="profile"
+              class="shadow mb-5 post w-100"
+            />
+          </div>
+          <div class="col-sm-6" v-else v-for="profile in state.profiles">
             <ProfileSearchCard
               :key="profile.id"
               :creator="profile"

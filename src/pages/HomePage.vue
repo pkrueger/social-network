@@ -5,7 +5,7 @@
   >
     <PostForm class="shadow mb-5 post w-100" v-if="state.account?.id" />
 
-    <div class="form-check mb-3 me-auto ms-4 text-primary">
+    <div class="form-check mb-3 text-primary">
       <input
         class="form-check-input"
         type="checkbox"
