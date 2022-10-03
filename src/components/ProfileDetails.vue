@@ -66,7 +66,6 @@
       class="card-footer rounded-bottom border-0 bg-primary text-light text-end pb-3"
       v-if="creator.id == state.account?.id"
     >
-      <!-- TODO Create Edit Functionality for Profile -->
       <button
         class="btn btn-outline text-light"
         data-bs-toggle="modal"
