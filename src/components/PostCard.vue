@@ -1,30 +1,43 @@
 <template>
   <div class="card">
-    <div class="card-body p-0">
-      <router-link :to="{ name: 'Profile', params: { id: post.creator.id } }">
-        <div class="user-info d-flex">
-          <img
-            :src="post.creator.picture"
-            :alt="post.creator.name"
-            class="img-fluid post-profile-image"
-            @error="loadDefaultImage"
-          />
-          <div class="user-text ms-3">
-            <h5 class="card-title text-primary">{{ post.creator.name }}</h5>
-            <div class="d-flex align-items-center">
-              <h6
-                class="card-subtitle text-dark needs-render transparent"
-                :datetime="post.created"
-              ></h6>
-              <i
-                class="fa-solid fa-user-graduate text-dark transparent ms-3"
-                v-if="post.creator.graduated"
-              ></i>
+    <div
+      class="card-header p-0 border-0 bg-white d-flex justify-content-between"
+    >
+      <div>
+        <router-link :to="{ name: 'Profile', params: { id: post.creator.id } }">
+          <div class="user-info d-flex">
+            <img
+              :src="post.creator.picture"
+              :alt="post.creator.name"
+              class="img-fluid post-profile-image"
+              @error="loadDefaultImage"
+            />
+            <div class="user-text ms-3">
+              <h5 class="card-title text-primary">{{ post.creator.name }}</h5>
+              <div class="d-flex align-items-center">
+                <h6
+                  class="card-subtitle text-dark needs-render transparent"
+                  :datetime="post.created"
+                ></h6>
+                <i
+                  class="fa-solid fa-user-graduate text-dark transparent ms-3"
+                  v-if="post.creator.graduated"
+                ></i>
+              </div>
             </div>
           </div>
-        </div>
-      </router-link>
-      <p class="post-body">{{ post.body }}</p>
+        </router-link>
+      </div>
+      <div>
+        <i
+          class="fa-solid fa-minus selectable rounded"
+          @click="removePost(post.id)"
+          v-if="post.creator.id == state.account?.id"
+        ></i>
+      </div>
+    </div>
+    <div class="card-body p-0">
+      <p class="post-body ms-3">{{ post.body }}</p>
       <img
         :src="post.imgUrl"
         alt="Error Loading Picture"
@@ -57,6 +70,7 @@ import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
 import Pop from "../utils/Pop.js";
 import { accountService } from "../services/AccountService.js";
+import { postsService } from "../services/PostsService.js";
 
 export default {
   props: {
@@ -79,6 +93,16 @@ export default {
       }
     }
 
+    async function removePost(id) {
+      try {
+        if (await Pop.confirm("Remove Post?")) {
+          await postsService.removePost(id);
+        }
+      } catch (error) {
+        Pop.error(error, "[RemovePost]");
+      }
+    }
+
     onMounted(() => {
       const nodes = document.querySelectorAll(".needs-render");
       render(nodes, "en_US");
@@ -95,6 +119,7 @@ export default {
     return {
       state,
       handleLike,
+      removePost,
       loadDefaultImage(event) {
         event.target.src = "src/assets/img/undraw-dog.png";
       },
@@ -144,5 +169,10 @@ export default {
 
 .fa-heart:active {
   filter: brightness(90%);
+}
+
+.fa-minus {
+  padding: 0.25rem;
+  margin: 0.75rem;
 }
 </style>

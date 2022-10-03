@@ -51,6 +51,30 @@ class PostsService {
     AppState.activePosts = r.data.posts.map((p) => new Post(p));
     AppState.olderPosts = r.data.older;
   }
+
+  async createPost(data) {
+    const res = await api.post("/api/posts", data);
+    if (AppState.posts.length) {
+      AppState.posts.unshift(new Post(res.data));
+    } else {
+      AppState.activePosts.unshift(new Post(res.data));
+    }
+  }
+
+  async removePost(id) {
+    await api.delete(`api/posts/${id}`);
+    if (AppState.activePosts.length) {
+      AppState.activePosts.splice(
+        AppState.activePosts.findIndex((p) => p.id == id),
+        1
+      );
+    } else {
+      AppState.posts.splice(
+        AppState.posts.findIndex((p) => p.id == id),
+        1
+      );
+    }
+  }
 }
 
 export const postsService = new PostsService();

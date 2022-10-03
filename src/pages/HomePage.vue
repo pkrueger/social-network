@@ -1,5 +1,7 @@
 <template>
   <div class="infinite-scroll pe-1 d-flex flex-column align-items-center">
+    <PostForm class="shadow mb-5 post w-100" v-if="state.account?.id" />
+
     <PostCard
       v-for="p in state.posts"
       :key="p.id"
@@ -16,12 +18,14 @@ import { AppState } from "../AppState.js";
 import PostCard from "../components/PostCard.vue";
 import { postsService } from "../services/PostsService.js";
 import Pop from "../utils/Pop.js";
+import PostForm from "../components/PostForm.vue";
 
 export default {
   setup() {
     const state = reactive({
       posts: computed(() => AppState.posts),
       older: computed(() => AppState.olderPosts),
+      account: computed(() => AppState.account),
     });
 
     async function getAllPosts() {
@@ -61,7 +65,7 @@ export default {
 
     return { state };
   },
-  components: { PostCard },
+  components: { PostCard, PostForm },
 };
 </script>
 

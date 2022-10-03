@@ -18,18 +18,35 @@
         alt=""
         class="img-fluid profile-image"
       />
-      <div class="text-start text-primary">
-        <p class="mb-0 transparent" v-if="state.account.class">Fall 2022</p>
+      <div class="text-start text-primary text-start">
+        <p class="mb-0 transparent" v-if="state.account.class">
+          {{ state.account.class }}
+        </p>
         <h3 class="name text-overflow">{{ state.account.name }}</h3>
       </div>
       <div class="social-link text-primary" v-if="state.account.github">
-        <i class="fa-brands fa-github"></i> <span>pkrueger</span>
+        <i class="fa-brands fa-github"></i>
+        <span>{{
+          state.account.github.split("/")[
+            state.account.github.split("/").length - 1
+          ]
+        }}</span>
       </div>
-      <div class="social-link text-primary" v-if="state.account.linkedin">
+      <div
+        class="social-link text-primary text-start"
+        v-if="state.account.linkedin"
+      >
         <i class="fa-brands fa-linkedin"></i>
-        <span>in/patrick-krueger</span>
+        <span>{{
+          state.account.linkedin.split("in/")[
+            state.account.linkedin.split("in/").length - 1
+          ]
+        }}</span>
       </div>
-      <div class="social-link text-primary" v-if="state.account.resume">
+      <div
+        class="social-link text-primary text-start"
+        v-if="state.account.resume"
+      >
         <i class="fa-solid fa-file"></i> <span>Resume</span>
       </div>
     </div>

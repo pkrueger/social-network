@@ -120,10 +120,8 @@
       ></textarea>
     </div>
 
-    <div class="buttons text-end">
-      <button type="submit" class="btn btn-primary" id="profileEditButton">
-        Submit
-      </button>
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </form>
 </template>

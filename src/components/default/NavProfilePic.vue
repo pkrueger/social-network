@@ -56,5 +56,7 @@ export default {
 .navbar-picture {
   border-radius: 50%;
   height: 2.5rem;
+  width: 2.5rem;
+  object-fit: cover;
 }
 </style>

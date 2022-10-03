@@ -6,6 +6,11 @@
       v-if="state.creator"
     />
 
+    <PostForm
+      class="post shadow w-100 mb-5"
+      v-if="route.params.id == state.account?.id"
+    />
+
     <PostCard
       v-for="p in state.posts"
       :key="p.id"
@@ -24,6 +29,7 @@ import PostCard from "../components/PostCard.vue";
 import { postsService } from "../services/PostsService.js";
 import Pop from "../utils/Pop.js";
 import ProfileDetails from "../components/ProfileDetails.vue";
+import PostForm from "../components/PostForm.vue";
 
 export default {
   watch: {
@@ -42,6 +48,7 @@ export default {
       posts: computed(() => AppState.activePosts),
       older: computed(() => AppState.olderPosts),
       creator: computed(() => AppState.activeCreator),
+      account: computed(() => AppState.account),
     });
 
     async function getPostsById() {
@@ -91,7 +98,7 @@ export default {
 
     return { state, route, getCreator, getPostsById, getNextPosts };
   },
-  components: { PostCard, ProfileDetails },
+  components: { PostCard, ProfileDetails, PostForm },
 };
 </script>
 
