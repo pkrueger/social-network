@@ -6,6 +6,7 @@
     <h3 class="transparent text-primary mb-4">
       Results for "{{ route.query.query }}"
     </h3>
+
     <div>
       <h1 class="text-primary mb-4 ms-4">People</h1>
       <div class="container-fluid">

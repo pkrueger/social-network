@@ -5,7 +5,29 @@
   >
     <PostForm class="shadow mb-5 post w-100" v-if="state.account?.id" />
 
+    <div class="form-check mb-3 me-auto ms-4">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="filterGraduated"
+        v-model="editable.filter"
+      />
+      <label class="form-check-label" for="filterGraduated">
+        Only Show Graduated
+      </label>
+    </div>
+
+    <div v-if="editable.filter" v-for="p in state.posts" class="post w-100">
+      <PostCard
+        v-if="p.creator.graduated"
+        :key="p.id"
+        :post="p"
+        class="shadow mb-5 post w-100"
+      />
+    </div>
     <PostCard
+      v-else
       v-for="p in state.posts"
       :key="p.id"
       :post="p"
@@ -16,7 +38,7 @@
 
 <script>
 import { computed } from "@vue/reactivity";
-import { onMounted, onUnmounted, reactive } from "vue";
+import { onMounted, onUnmounted, reactive, ref } from "vue";
 import { AppState } from "../AppState.js";
 import PostCard from "../components/PostCard.vue";
 import { postsService } from "../services/PostsService.js";
@@ -31,6 +53,8 @@ export default {
       account: computed(() => AppState.account),
       awordHeight: computed(() => AppState.awordHeight),
     });
+
+    const editable = ref({});
 
     async function getAllPosts() {
       try {
@@ -66,7 +90,7 @@ export default {
       AppState.posts = [];
     });
 
-    return { state };
+    return { state, editable };
   },
   components: { PostCard, PostForm },
 };
