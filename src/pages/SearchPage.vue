@@ -7,6 +7,19 @@
       Results for "{{ route.query.query }}"
     </h3>
 
+    <div class="form-check text-primary">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="filterGraduated"
+        v-model="editable.filter"
+      />
+      <label class="form-check-label" for="filterGraduated">
+        Only Show Graduated
+      </label>
+    </div>
+
     <div>
       <h1 class="text-primary mb-4 ms-4">People</h1>
       <div class="container-fluid">
@@ -24,7 +37,16 @@
 
     <div>
       <h1 class="text-primary mb-4 ms-4">Posts</h1>
+      <div v-if="editable.filter" v-for="p in state.posts" class="post w-100">
+        <PostCard
+          v-if="p.creator.graduated"
+          :key="p.id"
+          :post="p"
+          class="shadow mb-5 post w-100"
+        />
+      </div>
       <PostCard
+        v-else
         v-for="p in state.posts"
         :key="p.id"
         :post="p"
@@ -35,7 +57,7 @@
 </template>
 
 <script>
-import { onMounted, onUnmounted, onUpdated, reactive } from "vue";
+import { onMounted, onUnmounted, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 import { postsService } from "../services/PostsService.js";
 import Pop from "../utils/Pop.js";
@@ -62,6 +84,7 @@ export default {
       awordHeight: computed(() => AppState.awordHeight),
     });
     const route = useRoute();
+    const editable = ref({});
 
     async function getSearchResults() {
       try {
@@ -98,7 +121,7 @@ export default {
       AppState.profiles = [];
     });
 
-    return { state, route, getSearchResults, getNextPosts };
+    return { state, route, editable, getSearchResults, getNextPosts };
   },
   components: { PostCard, ProfileSearchCard },
 };
