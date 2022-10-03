@@ -1,15 +1,32 @@
 <template>
   <div class="infinite-scroll pe-1 d-flex flex-column align-items-center">
-    <h3 class="transparent text-primary mb-3">
+    <h3 class="transparent text-primary mb-4">
       Searching for "{{ route.query.query }}"
     </h3>
-    <!-- TODO ADD PROFILE CARD -->
-    <PostCard
-      v-for="p in state.posts"
-      :key="p.id"
-      :post="p"
-      class="shadow mb-5 post w-100"
-    />
+    <div>
+      <h1 class="text-primary mb-4 ms-4">People</h1>
+      <div class="container-fluid">
+        <div class="row post">
+          <div class="col-sm-6" v-for="profile in state.profiles">
+            <ProfileSearchCard
+              :key="profile.id"
+              :creator="profile"
+              class="shadow mb-5 post w-100"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h1 class="text-primary mb-4 ms-4">Posts</h1>
+      <PostCard
+        v-for="p in state.posts"
+        :key="p.id"
+        :post="p"
+        class="shadow mb-5 post w-100"
+      />
+    </div>
   </div>
 </template>
 
@@ -21,6 +38,7 @@ import Pop from "../utils/Pop.js";
 import PostCard from "../components/PostCard.vue";
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
+import ProfileSearchCard from "../components/ProfileSearchCard.vue";
 
 export default {
   watch: {
@@ -78,7 +96,7 @@ export default {
 
     return { state, route, getSearchResults, getNextPosts };
   },
-  components: { PostCard },
+  components: { PostCard, ProfileSearchCard },
 };
 </script>
 
