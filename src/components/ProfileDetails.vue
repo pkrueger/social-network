@@ -30,31 +30,33 @@
           </div>
           <h2 class="">{{ creator.name }}</h2>
         </div>
-        <div class="d-flex gap-3">
-          <a
-            :href="creator.github"
-            class="social-link text-light"
-            target="_blank"
-            v-if="creator.github"
-          >
-            <i class="fa-brands fa-github"></i>
-          </a>
-          <a
-            :href="creator.linkedin"
-            class="social-link text-light"
-            target="_blank"
-            v-if="creator.linkedin"
-          >
-            <i class="fa-brands fa-linkedin"></i>
-          </a>
-          <a
-            :href="creator.resume"
-            class="social-link text-light"
-            target="_blank"
-            v-if="creator.resume"
-          >
-            <i class="fa-solid fa-file"></i>
-          </a>
+        <div>
+          <div class="d-flex gap-3">
+            <a
+              :href="creator.github"
+              class="social-link text-light"
+              target="_blank"
+              v-if="creator.github"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a
+              :href="creator.linkedin"
+              class="social-link text-light"
+              target="_blank"
+              v-if="creator.linkedin"
+            >
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a
+              :href="creator.resume"
+              class="social-link text-light"
+              target="_blank"
+              v-if="creator.resume"
+            >
+              <i class="fa-solid fa-file"></i>
+            </a>
+          </div>
         </div>
       </div>
       <p class="mb-0">{{ creator.bio }}</p>

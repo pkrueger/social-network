@@ -3,7 +3,7 @@
     <h3 class="transparent text-primary mb-3">
       Searching for "{{ route.query.query }}"
     </h3>
-
+    <!-- TODO ADD PROFILE CARD -->
     <PostCard
       v-for="p in state.posts"
       :key="p.id"
