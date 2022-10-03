@@ -1,7 +1,10 @@
 <template>
-  <div class="infinite-scroll pe-1 d-flex flex-column align-items-center">
+  <div
+    class="infinite-scroll pe-1 d-flex flex-column align-items-center"
+    :style="`height: calc(100vh - 5rem - ${state.awordHeight}px)`"
+  >
     <h3 class="transparent text-primary mb-4">
-      Searching for "{{ route.query.query }}"
+      Results for "{{ route.query.query }}"
     </h3>
     <div>
       <h1 class="text-primary mb-4 ms-4">People</h1>
@@ -55,6 +58,7 @@ export default {
       posts: computed(() => AppState.activePosts),
       profiles: computed(() => AppState.profiles),
       older: computed(() => AppState.olderPosts),
+      awordHeight: computed(() => AppState.awordHeight),
     });
     const route = useRoute();
 
@@ -74,7 +78,6 @@ export default {
             element.scrollTop + element.clientHeight >= element.scrollHeight &&
             state.older
           ) {
-            console.log("hello");
             await postsService.getOlderActivePosts(state.older);
           }
         } catch (error) {

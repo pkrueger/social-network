@@ -16,9 +16,12 @@
               <h5 class="card-title text-primary text-overflow">
                 {{ creator.name }}
               </h5>
-              <div class="d-flex">
+              <div
+                class="d-flex align-items-center gap-2 text-primary transparent"
+              >
+                <p class="m-0">{{ creator.class }}</p>
                 <i
-                  class="fa-solid fa-user-graduate text-primary transparent"
+                  class="fa-solid fa-user-graduate"
                   v-if="creator.graduated"
                 ></i>
               </div>

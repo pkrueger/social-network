@@ -1,5 +1,8 @@
 <template>
-  <div class="infinite-scroll pe-1 d-flex flex-column align-items-center">
+  <div
+    class="infinite-scroll pe-1 d-flex flex-column align-items-center"
+    :style="`height: calc(100vh - 5rem - ${state.awordHeight}px)`"
+  >
     <PostForm class="shadow mb-5 post w-100" v-if="state.account?.id" />
 
     <PostCard
@@ -26,6 +29,7 @@ export default {
       posts: computed(() => AppState.posts),
       older: computed(() => AppState.olderPosts),
       account: computed(() => AppState.account),
+      awordHeight: computed(() => AppState.awordHeight),
     });
 
     async function getAllPosts() {
@@ -45,7 +49,6 @@ export default {
             element.scrollTop + element.clientHeight >= element.scrollHeight &&
             state.older
           ) {
-            console.log("hello");
             await postsService.getOlderPosts(state.older);
           }
         } catch (error) {

@@ -1,5 +1,8 @@
 <template>
-  <div class="infinite-scroll pe-1 d-flex flex-column align-items-center">
+  <div
+    class="infinite-scroll pe-1 d-flex flex-column align-items-center"
+    :style="`height: calc(100vh - 5rem - ${state.awordHeight}px)`"
+  >
     <ProfileDetails
       :creator="state.creator"
       class="post shadow w-100"
@@ -49,6 +52,7 @@ export default {
       older: computed(() => AppState.olderPosts),
       creator: computed(() => AppState.activeCreator),
       account: computed(() => AppState.account),
+      awordHeight: computed(() => AppState.awordHeight),
     });
 
     async function getPostsById() {
@@ -67,7 +71,6 @@ export default {
             element.scrollTop + element.clientHeight >= element.scrollHeight &&
             state.older
           ) {
-            console.log("hello");
             await postsService.getOlderActivePosts(state.older);
           }
         } catch (error) {

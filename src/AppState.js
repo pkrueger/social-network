@@ -26,4 +26,5 @@ export const AppState = reactive({
   page: 1,
 
   screenWidth: window.innerWidth,
+  awordHeight: 0,
 });

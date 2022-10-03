@@ -11,7 +11,11 @@
       <div class="container-fluid">
         <div class="row">
           <!-- w > 991 -->
-          <div class="col-12 awords" v-if="appState.screenWidth < 992">
+          <div
+            class="col-12"
+            id="awordsBanner"
+            v-if="appState.screenWidth < 992"
+          >
             <AwordBar />
           </div>
           <div class="col-lg-10">
@@ -27,7 +31,7 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { AppState } from "./AppState";
 import Navbar from "./components/default/Navbar.vue";
 import ProfileBar from "./components/ProfileBar.vue";
@@ -37,6 +41,13 @@ export default {
   setup() {
     window.addEventListener("resize", () => {
       AppState.screenWidth = window.innerWidth;
+      AppState.awordHeight =
+        document.getElementById("awordsBanner")?.scrollHeight;
+    });
+
+    onMounted(() => {
+      AppState.awordHeight =
+        document.getElementById("awordsBanner")?.scrollHeight;
     });
 
     return {
